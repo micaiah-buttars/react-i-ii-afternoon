@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Card from './components/Card.jsx';
 
 class App extends Component {
+  constructor(){
+    super()
+
+    this.state = {
+      index: 0
+    }
+
+    this.handleClickPrev = () => {
+        this.setState({
+          index: this.state.index - 1
+        })
+      }
+    this.handleClickNext = () => {
+        this.setState({
+          index: this.state.index + 1
+        })
+      }
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+      <header className="header"><strong className="home">Home</strong></header>
+      </div>
+
+        <Card index={this.state.index}/>
+        <div className="buttons">
+          <h3 className="prev" onClick={this.handleClickPrev}>{`< Previous`}</h3>
+          <h3 className="next" onClick={this.handleClickNext}>{`Next >`}</h3>
+        </div>
+      
       </div>
     );
   }
